@@ -34,7 +34,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (mounted) {
       localStorage.setItem('theme', theme);
       
-      // Apply theme to document element
+      // Apply theme to body element to avoid hydration issues
+      const body = document.body;
+      if (theme === 'dark') {
+        body.classList.add('dark');
+      } else {
+        body.classList.remove('dark');
+      }
+      
+      // Also apply to document element for compatibility
       const root = document.documentElement;
       if (theme === 'dark') {
         root.classList.add('dark');
@@ -52,15 +60,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   if (!mounted) {
     return (
       <ThemeContext.Provider value={{ theme: 'light', toggleTheme }}>
-        <div 
-          className="min-h-screen"
-          style={{
-            backgroundColor: '#ffffff',
-            color: '#171717'
-          }}
-        >
-          {children}
-        </div>
+        {children}
       </ThemeContext.Provider>
     );
   }
