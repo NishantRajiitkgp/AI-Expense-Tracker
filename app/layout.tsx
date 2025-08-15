@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+children: React.ReactNode;
 }>) {
   return (
     <html lang='en'>
@@ -30,24 +30,16 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('theme');
-                  var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  var isDark = theme === 'dark' || (!theme && systemPrefersDark);
-                  
-                  if (isDark) {
-                    document.documentElement.classList.add('dark');
-                    document.body.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                    document.body.classList.remove('dark');
-                  }
+                  // Always apply dark mode
+                  document.documentElement.classList.add('dark');
+                  document.body.classList.add('dark');
                 } catch (e) {}
               })();
             `,
           }}
         />
       </head>
-      <body className="antialiased transition-colors duration-300" suppressHydrationWarning>
+      <body className="antialiased transition-colors duration-300 bg-black text-white" suppressHydrationWarning>
         <ThemeProvider>
           <ClerkThemeProvider>
             <Navbar />

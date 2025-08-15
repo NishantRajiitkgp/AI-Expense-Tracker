@@ -59,6 +59,7 @@ const AddRecord = () => {
       }
     } catch {
       setAlertMessage('Failed to get AI category suggestion');
+      setAlertMessage('Failed to get AI category suggestion');
       setAlertType('error');
     } finally {
       setIsCategorizingAI(false);
@@ -66,20 +67,7 @@ const AddRecord = () => {
   };
 
   return (
-    <div className='bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-xl border border-gray-100/50 dark:border-gray-700/50 hover:shadow-2xl'>
-      <div className='flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6'>
-        <div className='w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-emerald-500 via-green-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg'>
-          <span className='text-white text-sm sm:text-lg'>💳</span>
-        </div>
-        <div>
-          <h3 className='text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 leading-tight'>
-            Add New Expense
-          </h3>
-          <p className='text-xs text-gray-500 dark:text-gray-400 mt-0.5'>
-            Track your spending with AI assistance
-          </p>
-        </div>
-      </div>
+    <div className='w-full'>
       <form
         ref={formRef}
         onSubmit={(e) => {
@@ -87,17 +75,17 @@ const AddRecord = () => {
           const formData = new FormData(formRef.current!);
           clientAction(formData);
         }}
-        className='space-y-6 sm:space-y-8'
+        className='space-y-6'
       >
         {/* Expense Description and Date */}
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 p-3 sm:p-4 bg-gradient-to-r from-emerald-50/50 to-green-50/50 dark:from-emerald-900/10 dark:to-green-900/10 rounded-xl border border-emerald-100/50 dark:border-emerald-800/50'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           {/* Expense Description */}
-          <div className='space-y-1.5'>
+          <div className='space-y-2'>
             <label
               htmlFor='text'
-              className='flex items-center gap-2 text-xs font-semibold text-gray-700 dark:text-gray-300 tracking-wide'
+              className='flex items-center gap-2 text-sm font-semibold text-white'
             >
-              <span className='w-1.5 h-1.5 bg-emerald-500 rounded-full'></span>
+              <span className='w-1.5 h-1.5 bg-green-500 rounded-full'></span>
               Expense Description
             </label>
             <div className='relative'>
@@ -107,7 +95,7 @@ const AddRecord = () => {
                 name='text'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className='w-full pl-3 pr-12 sm:pr-14 py-2.5 bg-white/70 dark:bg-gray-800/70 border-2 border-gray-200/80 dark:border-gray-600/80 rounded-xl focus:ring-2 focus:ring-emerald-500/30 focus:bg-white dark:focus:bg-gray-700/90 focus:border-emerald-400 dark:focus:border-emerald-400 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm shadow-sm hover:shadow-md transition-all duration-200'
+                className='w-full pl-3 pr-12 py-3 bg-gray-700/70 border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-green-500/30 focus:bg-gray-600/90 focus:border-green-400 text-white placeholder-gray-400 text-sm transition-all duration-200'
                 placeholder='Coffee, groceries, gas...'
                 required
               />
@@ -115,129 +103,145 @@ const AddRecord = () => {
                 type='button'
                 onClick={handleAISuggestCategory}
                 disabled={isCategorizingAI || !description.trim()}
-                className='absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-7 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 disabled:from-gray-300 disabled:to-gray-300 text-white rounded-lg text-xs font-medium flex items-center justify-center shadow-lg hover:shadow-xl disabled:shadow-none transition-all duration-200'
+                className='absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-600 hover:bg-gray-500 disabled:bg-gray-700 text-white rounded-lg flex items-center justify-center transition-all duration-200'
                 title='AI Category Suggestion'
               >
                 {isCategorizingAI ? (
                   <div className='w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin'></div>
                 ) : (
-                  <span className='text-xs'>✨</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
                 )}
               </button>
             </div>
             {isCategorizingAI && (
-              <div className='flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400'>
-                <div className='w-1.5 h-1.5 bg-emerald-500 dark:bg-emerald-400 rounded-full animate-pulse'></div>
+              <div className='flex items-center gap-2 text-xs text-green-400'>
+                <div className='w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse'></div>
                 AI is analyzing your description...
               </div>
             )}
           </div>
 
           {/* Expense Date */}
-          <div className='space-y-1.5'>
+          <div className='space-y-2'>
             <label
               htmlFor='date'
-              className='flex items-center gap-2 text-xs font-semibold text-gray-700 dark:text-gray-300 tracking-wide'
+              className='flex items-center gap-2 text-sm font-semibold text-white'
             >
               <span className='w-1.5 h-1.5 bg-green-500 rounded-full'></span>
               Expense Date
             </label>
-            <input
-              type='date'
-              name='date'
-              id='date'
-              className='w-full px-3 py-2.5 bg-white/70 dark:bg-gray-800/70 border-2 border-gray-200/80 dark:border-gray-600/80 rounded-xl focus:ring-2 focus:ring-emerald-500/30 focus:bg-white dark:focus:bg-gray-700/90 focus:border-emerald-400 dark:focus:border-emerald-400 text-gray-900 dark:text-gray-100 text-sm shadow-sm hover:shadow-md transition-all duration-200'
-              required
-              onFocus={(e) => e.target.showPicker()}
-            />
+            <div className='relative'>
+              <input
+                type='date'
+                name='date'
+                id='date'
+                className='w-full px-3 py-3 bg-gray-700/70 border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-green-500/30 focus:bg-gray-600/90 focus:border-green-400 text-white text-sm transition-all duration-200'
+                required
+                onFocus={(e) => e.target.showPicker()}
+              />
+              <div className='absolute right-3 top-1/2 -translate-y-1/2'>
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Category Selection and Amount */}
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 p-3 sm:p-4 bg-gradient-to-r from-green-50/50 to-emerald-50/50 dark:from-green-900/10 dark:to-emerald-900/10 rounded-xl border border-green-100/50 dark:border-green-800/50'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           {/* Category Selection */}
-          <div className='space-y-1.5'>
+          <div className='space-y-2'>
             <label
               htmlFor='category'
-              className='flex items-center gap-2 text-xs font-semibold text-gray-700 dark:text-gray-300 tracking-wide'
+              className='flex items-center gap-2 text-sm font-semibold text-white'
             >
               <span className='w-1.5 h-1.5 bg-green-500 rounded-full'></span>
               Category
-              <span className='text-xs text-gray-400 dark:text-gray-500 ml-2 font-normal hidden sm:inline'>
+              <span className='text-xs text-gray-400 ml-2 font-normal'>
                 Use the ✨ button above for AI suggestions
               </span>
             </label>
-            <select
-              id='category'
-              name='category'
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className='w-full px-3 py-2.5 bg-white/70 dark:bg-gray-800/70 border-2 border-gray-200/80 dark:border-gray-600/80 rounded-xl focus:ring-2 focus:ring-emerald-500/30 focus:bg-white dark:focus:bg-gray-700/90 focus:border-emerald-400 dark:focus:border-emerald-400 text-gray-900 dark:text-gray-100 cursor-pointer text-sm shadow-sm hover:shadow-md transition-all duration-200'
-              required
-            >
+            <div className='relative'>
+              <select
+                id='category'
+                name='category'
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className='w-full px-3 py-3 bg-gray-700/70 border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-green-500/30 focus:bg-gray-600/90 focus:border-green-400 text-white cursor-pointer text-sm transition-all duration-200 appearance-none'
+                required
+              >
               <option
                 value=''
                 disabled
-                className='text-gray-400 dark:text-gray-500'
+                className='text-gray-500 bg-gray-700'
               >
                 Select category...
               </option>
-              <option value='Food' className='text-gray-900 dark:text-gray-100'>
-                🍔 Food & Dining
+              <option value='Food' className='text-white bg-gray-700'>
+                Food & Dining
               </option>
               <option
                 value='Transportation'
-                className='text-gray-900 dark:text-gray-100'
+                className='text-white bg-gray-700'
               >
-                🚗 Transportation
+                Transportation
               </option>
               <option
                 value='Shopping'
-                className='text-gray-900 dark:text-gray-100'
+                className='text-white bg-gray-700'
               >
-                🛒 Shopping
+                Shopping
               </option>
               <option
                 value='Entertainment'
-                className='text-gray-900 dark:text-gray-100'
+                className='text-white bg-gray-700'
               >
-                🎬 Entertainment
+                Entertainment
               </option>
               <option
                 value='Bills'
-                className='text-gray-900 dark:text-gray-100'
+                className='text-white bg-gray-700'
               >
-                💡 Bills & Utilities
+                Bills & Utilities
               </option>
               <option
                 value='Healthcare'
-                className='text-gray-900 dark:text-gray-100'
+                className='text-white bg-gray-700'
               >
-                🏥 Healthcare
+                Healthcare
               </option>
               <option
                 value='Other'
-                className='text-gray-900 dark:text-gray-100'
+                className='text-white bg-gray-700'
               >
-                📦 Other
+                Other
               </option>
             </select>
+            <div className='absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none'>
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
           </div>
+        </div>
 
           {/* Amount */}
-          <div className='space-y-1.5'>
+          <div className='space-y-2'>
             <label
               htmlFor='amount'
-              className='flex items-center gap-2 text-xs font-semibold text-gray-700 dark:text-gray-300 tracking-wide'
+              className='flex items-center gap-2 text-sm font-semibold text-white'
             >
               <span className='w-1.5 h-1.5 bg-green-500 rounded-full'></span>
               Amount
-              <span className='text-xs text-gray-400 dark:text-gray-500 ml-2 font-normal hidden sm:inline'>
+              <span className='text-xs text-gray-400 ml-2 font-normal'>
                 Enter amount between $0 and $1,000
               </span>
             </label>
             <div className='relative'>
-              <span className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 font-medium text-sm'>
+              <span className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-medium text-sm'>
                 $
               </span>
               <input
@@ -249,8 +253,8 @@ const AddRecord = () => {
                 step='0.01'
                 value={amount}
                 onChange={(e) => setAmount(parseFloat(e.target.value) || 0)}
-                className='w-full pl-6 pr-3 py-2.5 bg-white/70 dark:bg-gray-800/70 border-2 border-gray-200/80 dark:border-gray-600/80 rounded-xl focus:ring-2 focus:ring-emerald-500/30 focus:bg-white dark:focus:bg-gray-700/90 focus:border-emerald-400 dark:focus:border-emerald-400 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200'
-                placeholder='0.00'
+                className='w-full pl-6 pr-3 py-3 bg-gray-700/70 border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-green-500/30 focus:bg-gray-600/90 focus:border-green-400 text-white placeholder-gray-400 text-sm font-semibold transition-all duration-200'
+                placeholder='50'
                 required
               />
             </div>
@@ -260,45 +264,39 @@ const AddRecord = () => {
         {/* Submit Button */}
         <button
           type='submit'
-          className='w-full relative overflow-hidden bg-gradient-to-r from-emerald-600 via-green-500 to-teal-500 hover:from-emerald-700 hover:via-green-600 hover:to-teal-600 text-white px-4 py-3 sm:px-5 sm:py-4 rounded-xl font-semibold shadow-xl hover:shadow-2xl group transition-all duration-300 border-2 border-transparent hover:border-white/20 text-sm sm:text-base'
+          className='w-full bg-white text-black px-6 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-base'
           disabled={isLoading}
         >
-          <div className='relative flex items-center justify-center gap-2'>
-            {isLoading ? (
-              <>
-                <div className='w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin'></div>
-                <span>Processing...</span>
-              </>
-            ) : (
-              <>
-                <span className='text-lg'>💫</span>
-                <span>Add Expense</span>
-              </>
-            )}
-          </div>
+          {isLoading ? 'Processing...' : 'Add Expense'}
         </button>
       </form>
 
       {/* Alert Message */}
       {alertMessage && (
         <div
-          className={`mt-4 p-3 rounded-xl border-l-4 backdrop-blur-sm ${
+          className={`mt-6 p-4 rounded-xl backdrop-blur-sm ${
             alertType === 'success'
-              ? 'bg-green-50/80 dark:bg-green-900/20 border-l-green-500 text-green-800 dark:text-green-200'
-              : 'bg-red-50/80 dark:bg-red-900/20 border-l-red-500 text-red-800 dark:text-red-200'
+              ? 'bg-green-900/20 text-green-200'
+              : 'bg-red-900/20 text-red-200'
           }`}
         >
-          <div className='flex items-center gap-2'>
+          <div className='flex items-center gap-3'>
             <div
               className={`w-6 h-6 rounded-full flex items-center justify-center ${
                 alertType === 'success'
-                  ? 'bg-green-100 dark:bg-green-800'
-                  : 'bg-red-100 dark:bg-red-800'
+                  ? 'bg-green-800'
+                  : 'bg-red-800'
               }`}
             >
-              <span className='text-sm'>
-                {alertType === 'success' ? '✅' : '⚠️'}
-              </span>
+              {alertType === 'success' ? (
+                <svg className="w-4 h-4 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="w-4 h-4 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+              )}
             </div>
             <p className='font-medium text-sm'>{alertMessage}</p>
           </div>

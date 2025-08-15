@@ -41,14 +41,14 @@ const RecordItem = ({ record }: { record: Record }) => {
 
   return (
     <li
-      className={`bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-lg border border-gray-100/50 dark:border-gray-600/50 border-l-4 ${getBorderColor(
+      className={`bg-gray-700/60 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-lg border border-gray-600/50 border-l-4 ${getBorderColor(
         record?.amount
-      )} hover:bg-white/80 dark:hover:bg-gray-700/80 relative min-h-[120px] sm:min-h-[140px] flex flex-col justify-between overflow-visible group`}
+      )} hover:bg-gray-700/80 relative min-h-[120px] sm:min-h-[140px] flex flex-col justify-between overflow-visible group transition-all duration-300`}
     >
       {/* Delete button positioned absolutely in top-right corner */}
       <button
         onClick={() => handleDeleteRecord(record.id)}
-        className={`absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-full w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center shadow-lg hover:shadow-xl border-2 border-white dark:border-gray-700 backdrop-blur-sm transform hover:scale-110 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200 ${
+        className={`absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-full w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center shadow-lg hover:shadow-xl border-2 border-gray-700 backdrop-blur-sm transform hover:scale-110 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200 ${
           isLoading ? 'cursor-not-allowed scale-100' : ''
         }`}
         aria-label='Delete record'
@@ -79,10 +79,10 @@ const RecordItem = ({ record }: { record: Record }) => {
       <div className='flex-1 flex flex-col justify-between'>
         <div className='space-y-2 sm:space-y-3'>
           <div className='flex items-center justify-between'>
-            <span className='text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wide uppercase'>
+            <span className='text-xs font-medium text-gray-400 tracking-wide uppercase'>
               {new Date(record?.date).toLocaleDateString()}
             </span>
-            <span className='text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100'>
+            <span className='text-lg sm:text-xl font-bold text-white'>
               ${record?.amount.toFixed(2)}
             </span>
           </div>
@@ -91,13 +91,13 @@ const RecordItem = ({ record }: { record: Record }) => {
             <span className='text-base sm:text-lg'>
               {getCategoryEmoji(record?.category)}
             </span>
-            <span className='text-sm font-medium text-gray-700 dark:text-gray-300'>
+            <span className='text-sm font-medium text-gray-300'>
               {record?.category}
             </span>
           </div>
         </div>
 
-        <div className='text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-2'>
+        <div className='text-xs sm:text-sm text-gray-400 mt-2'>
           <p className='truncate break-words line-clamp-2'>{record?.text}</p>
         </div>
       </div>

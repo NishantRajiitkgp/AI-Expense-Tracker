@@ -2,135 +2,129 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer 
-      className='relative overflow-hidden border-t'
-      style={{
-        background: 'linear-gradient(to bottom right, var(--card-bg), var(--background), rgba(16, 185, 129, 0.1))',
-        borderColor: 'var(--card-border)'
-      }}
-    >
-      {/* Gradient accent line */}
-      <div className='absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500'></div>
-
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-8'>
+    <footer className='bg-black text-white py-12'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        <div className='grid grid-cols-1 md:grid-cols-5 gap-8'>
           {/* Logo and Tagline */}
-          <div className='text-center md:text-left'>
-            <div className='inline-flex items-center gap-2 mb-4'>
-              <div className='w-8 h-8 bg-gradient-to-br from-emerald-500 via-green-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg'>
-                <span className='text-white text-lg'>💰</span>
-              </div>
-              <h2 className='text-xl font-bold bg-gradient-to-r from-emerald-600 via-green-500 to-teal-500 bg-clip-text text-transparent'>
-                ExpenseTracker AI
+          <div className='md:col-span-1'>
+            <div className='flex items-center gap-2 mb-4'>
+              
+              <h2 className='text-xl font-bold text-white'>
+                CostPilot
               </h2>
             </div>
-            <p 
-              className='leading-relaxed max-w-sm'
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              Intelligent financial management powered by AI. Track your
-              expenses, manage your budget, and gain insights into your spending
-              patterns.
+            <p className='text-white text-sm leading-relaxed max-w-sm'>
+              Your Product Roadmap, Powered by Feedback
             </p>
           </div>
 
-          {/* Navigation Links */}
-          <div className='text-center md:text-left'>
-            <h3 
-              className='text-lg font-semibold mb-4'
-              style={{ color: 'var(--text-primary)' }}
-            >
-              Quick Links
+          {/* Features Column */}
+          <div className='md:col-span-1'>
+            <h3 className='text-white font-bold mb-4'>
+              Features
             </h3>
-            <div className='flex flex-col space-y-3'>
+            <div className='space-y-2'>
               <Link
                 href='/'
-                className='group inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200'
-                style={{ color: 'var(--text-secondary)' }}
+                className='block text-gray-400 text-sm hover:text-gray-300 transition-colors duration-200'
               >
-                <span className='w-1.5 h-1.5 bg-emerald-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200'></span>
-                Home
+                Feedback
               </Link>
               <Link
                 href='/about'
-                className='group inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200'
-                style={{ color: 'var(--text-secondary)' }}
+                className='block text-gray-400 text-sm hover:text-gray-300 transition-colors duration-200'
               >
-                <span className='w-1.5 h-1.5 bg-emerald-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200'></span>
-                About
+                Roadmap
               </Link>
               <Link
                 href='/contact'
-                className='group inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200'
-                style={{ color: 'var(--text-secondary)' }}
+                className='block text-gray-400 text-sm hover:text-gray-300 transition-colors duration-200'
               >
-                <span className='w-1.5 h-1.5 bg-emerald-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200'></span>
-                Contact
+                Changelog
               </Link>
+              <div className='text-gray-400  text-sm'>
+                Help Center
+              </div>
             </div>
           </div>
 
-          {/* Features */}
-          <div className='text-center md:text-left'>
-            <h3 
-              className='text-lg font-semibold mb-4'
-              style={{ color: 'var(--text-primary)' }}
-            >
-              Features
+          {/* Product Column */}
+          <div className='md:col-span-1'>
+            <h3 className='text-white  font-bold mb-4'>
+              Product
             </h3>
-            <div className='space-y-3'>
-              <div className='flex items-center gap-3 text-sm'>
-                <div className='w-5 h-5 bg-gradient-to-br from-emerald-500 to-green-500 rounded-md flex items-center justify-center shadow-sm'>
-                  <span className='text-white text-xs'>🤖</span>
-                </div>
-                <span style={{ color: 'var(--text-secondary)' }}>AI-Powered Insights</span>
+            <div className='space-y-2'>
+              <div className='text-gray-400  text-sm'>
+                Pricing
               </div>
-              <div className='flex items-center gap-3 text-sm'>
-                <div className='w-5 h-5 bg-gradient-to-br from-green-500 to-teal-500 rounded-md flex items-center justify-center shadow-sm'>
-                  <span className='text-white text-xs'>✨</span>
-                </div>
-                <span style={{ color: 'var(--text-secondary)' }}>Smart Categorization</span>
+              <div className='text-gray-400  text-sm'>
+                Download
               </div>
-              <div className='flex items-center gap-3 text-sm'>
-                <div className='w-5 h-5 bg-gradient-to-br from-teal-500 to-emerald-500 rounded-md flex items-center justify-center shadow-sm'>
-                  <span className='text-white text-xs'>📊</span>
-                </div>
-                <span style={{ color: 'var(--text-secondary)' }}>Analytics Dashboard</span>
+              <div className='text-gray-400  text-sm'>
+                Changelog
+              </div>
+            </div>
+          </div>
+
+          {/* Company Column */}
+          <div className='md:col-span-1'>
+            <h3 className='text-white  font-bold mb-4'>
+              Company
+            </h3>
+            <div className='space-y-2'>
+              <Link
+                href='/about'
+                className='block text-gray-400 text-sm hover:text-gray-300 transition-colors duration-200'
+              >
+                About us
+              </Link>
+              <Link
+                href='/contact'
+                className='block text-gray-400 text-sm hover:text-gray-300 transition-colors duration-200'
+              >
+                Contact
+              </Link>
+              <div className='text-gray-400  text-sm'>
+                Customers
+              </div>
+              <div className='text-gray-400  text-sm'>
+                Blog
+              </div>
+            </div>
+          </div>
+
+          {/* Legal Column */}
+          <div className='md:col-span-1'>
+            <h3 className='text-white  font-bold mb-4'>
+              Legal
+            </h3>
+            <div className='space-y-2'>
+              <div className='text-gray-400  text-sm'>
+                Terms of Conditions
+              </div>
+              <div className='text-gray-400  text-sm'>
+                Privacy Policy
               </div>
             </div>
           </div>
         </div>
 
         {/* Divider */}
-        <div 
-          className='w-full h-px mb-8'
-          style={{
-            background: 'linear-gradient(to right, transparent, var(--card-border), transparent)'
-          }}
-        ></div>
+        <div className='w-full h-px bg-gray-800 my-8'></div>
 
         {/* Copyright and Social */}
         <div className='flex flex-col md:flex-row justify-between items-center'>
           <div className='text-center md:text-left mb-4 md:mb-0'>
-            <p 
-              className='text-sm'
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              © {new Date().getFullYear()} ExpenseTracker AI. All rights
+            <p className='text-white text-sm'>
+              © {new Date().getFullYear()} CostPilot AI. All rights
               reserved.
             </p>
           </div>
 
           <div className='flex items-center gap-4'>
-            <div 
-              className='inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium'
-              style={{
-                backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                color: 'var(--accent)'
-              }}
-            >
-              <span className='w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse'></span>
-              Made by Sahand
+            <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-gray-800 text-white'>
+              <span className='w-1.5 h-1.5 bg-white rounded-full'></span>
+              Made by Nishant Raj
             </div>
           </div>
         </div>

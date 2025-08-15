@@ -102,23 +102,23 @@ const BarChart = ({ records }: { records: Record[] }) => {
   const getAmountColor = (amount: number) => {
     if (amount > 200)
       return {
-        bg: isDark ? 'rgba(255, 99, 132, 0.3)' : 'rgba(255, 99, 132, 0.2)',
-        border: isDark ? 'rgba(255, 99, 132, 0.8)' : 'rgba(255, 99, 132, 1)',
-      }; // Red for high spending
+        bg: 'rgba(168, 85, 247, 0.8)', // Beautiful purple for high spending
+        border: 'rgba(168, 85, 247, 1)',
+      };
     if (amount > 100)
       return {
-        bg: isDark ? 'rgba(255, 206, 86, 0.3)' : 'rgba(255, 206, 86, 0.2)',
-        border: isDark ? 'rgba(255, 206, 86, 0.8)' : 'rgba(255, 206, 86, 1)',
-      }; // Yellow for medium spending
+        bg: 'rgba(236, 72, 153, 0.8)', // Elegant pink for medium spending
+        border: 'rgba(236, 72, 153, 1)',
+      };
     if (amount > 50)
       return {
-        bg: isDark ? 'rgba(54, 162, 235, 0.3)' : 'rgba(54, 162, 235, 0.2)',
-        border: isDark ? 'rgba(54, 162, 235, 0.8)' : 'rgba(54, 162, 235, 1)',
-      }; // Blue for moderate spending
+        bg: 'rgba(59, 130, 246, 0.8)', // Sophisticated blue for moderate spending
+        border: 'rgba(59, 130, 246, 1)',
+      };
     return {
-      bg: isDark ? 'rgba(75, 192, 192, 0.3)' : 'rgba(75, 192, 192, 0.2)',
-      border: isDark ? 'rgba(75, 192, 192, 0.8)' : 'rgba(75, 192, 192, 1)',
-    }; // Green for low spending
+      bg: 'rgba(34, 197, 94, 0.8)', // Refined green for low spending
+      border: 'rgba(34, 197, 94, 1)',
+    };
   };
 
   // Prepare data for the chart
@@ -137,8 +137,9 @@ const BarChart = ({ records }: { records: Record[] }) => {
         borderColor: aggregatedData.map(
           (item) => getAmountColor(item.amount).border
         ),
-        borderWidth: 1,
-        borderRadius: 2, // Rounded bar edges
+        borderWidth: 2,
+        borderRadius: 4, // Rounded bar edges
+        borderSkipped: false,
       },
     ],
   };
@@ -154,14 +155,13 @@ const BarChart = ({ records }: { records: Record[] }) => {
         display: false, // Remove chart title
       },
       tooltip: {
-        backgroundColor: isDark
-          ? 'rgba(31, 41, 55, 0.95)'
-          : 'rgba(255, 255, 255, 0.95)',
-        titleColor: isDark ? '#f9fafb' : '#1f2937',
-        bodyColor: isDark ? '#d1d5db' : '#374151',
-        borderColor: isDark ? '#374151' : '#e5e7eb',
+        backgroundColor: 'rgba(17, 17, 17, 0.95)',
+        titleColor: '#f9fafb',
+        bodyColor: '#d1d5db',
+        borderColor: '#374151',
         borderWidth: 1,
         cornerRadius: 8,
+        displayColors: false,
         callbacks: {
           label: function (context: { dataIndex: number }) {
             const dataIndex = context.dataIndex;
@@ -184,13 +184,13 @@ const BarChart = ({ records }: { records: Record[] }) => {
             size: isMobile ? 12 : 14,
             weight: 'bold' as const,
           },
-          color: isDark ? '#d1d5db' : '#2c3e50',
+          color: '#d1d5db',
         },
         ticks: {
           font: {
             size: isMobile ? 10 : 12,
           },
-          color: isDark ? '#9ca3af' : '#7f8c8d', // Gray x-axis labels
+          color: '#9ca3af', // Gray x-axis labels
           maxRotation: isMobile ? 45 : 0, // Rotate labels on mobile
           minRotation: isMobile ? 45 : 0,
         },
@@ -206,27 +206,37 @@ const BarChart = ({ records }: { records: Record[] }) => {
             size: isMobile ? 12 : 16, // Smaller font on mobile
             weight: 'bold' as const,
           },
-          color: isDark ? '#d1d5db' : '#2c3e50',
+          color: '#d1d5db',
         },
         ticks: {
           font: {
             size: isMobile ? 10 : 12, // Smaller font on mobile
           },
-          color: isDark ? '#9ca3af' : '#7f8c8d', // Gray y-axis labels
+          color: '#9ca3af', // Gray y-axis labels
           callback: function (value: string | number) {
             return '$' + value; // Add dollar sign to y-axis labels
           },
         },
         grid: {
-          color: isDark ? '#374151' : '#e0e0e0', // Dark mode grid lines
+          color: 'rgba(55, 65, 81, 0.3)', // Subtle grid lines matching the image
+          drawBorder: false,
         },
         beginAtZero: true, // Start y-axis at zero for expenses
+      },
+    },
+    interaction: {
+      intersect: false,
+      mode: 'index' as const,
+    },
+    elements: {
+      bar: {
+        hoverBackgroundColor: 'rgba(16, 185, 129, 0.5)',
       },
     },
   };
 
   return (
-    <div className='relative w-full h-64 sm:h-72 md:h-80'>
+    <div className='relative w-full h-80 px-2'>
       <Bar data={data} options={options} />
     </div>
   );
