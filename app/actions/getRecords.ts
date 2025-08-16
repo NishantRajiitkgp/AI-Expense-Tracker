@@ -2,6 +2,7 @@
 import { db } from '@/lib/db';
 import { auth } from '@clerk/nextjs/server';
 import { Record } from '@/types/Record';
+import { updateLastActive } from './updateLastActive';
 
 async function getRecords(): Promise<{
   records?: Record[];
@@ -14,6 +15,9 @@ async function getRecords(): Promise<{
   }
 
   try {
+    // Update user's last active timestamp
+    await updateLastActive();
+
     const records = await db.record.findMany({
       where: { userId },
       orderBy: {

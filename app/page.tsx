@@ -5,12 +5,21 @@ import Guest from '@/components/Guest';
 import RecordChart from '@/components/RecordChart';
 import RecordHistory from '@/components/RecordHistory';
 import { currentUser } from '@clerk/nextjs/server';
+import { checkUser } from '@/lib/checkUser';
+import { updateLastActive } from './actions/updateLastActive';
 
 export default async function HomePage() {
-  const user = await currentUser();
-  if (!user) {
+  const clerkUser = await currentUser();
+  if (!clerkUser) {
     return <Guest />;
   }
+
+  // Get the database user and update last active
+  const dbUser = await checkUser();
+  if (dbUser) {
+    await updateLastActive();
+  }
+
   return (
     <div className='font-sans bg-black text-white transition-all duration-300 min-h-screen'>
       {/* Hero Section */}
@@ -24,7 +33,7 @@ export default async function HomePage() {
           <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-white leading-tight'>
             Welcome Back,{' '}
             <span>
-              {user.firstName}!
+              {clerkUser.firstName}!
             </span>
           </h1>
           <p className='text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0'>
@@ -33,7 +42,7 @@ export default async function HomePage() {
           <div className='mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2 sm:px-0'>
             <div className='inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium'>
               <span className='w-2 h-2 bg-white rounded-full'></span>
-              Member since {new Date(user.createdAt).toLocaleDateString()}
+              Member since {new Date(clerkUser.createdAt).toLocaleDateString()}
             </div>
           </div>
         </div>
@@ -69,7 +78,7 @@ export default async function HomePage() {
                   <div className='relative flex-shrink-0'>
                     <div className='w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-lg flex items-center justify-center'>
                       <span className='text-white text-2xl font-bold'>
-                        {user.firstName?.charAt(0) || 'U'}
+                        {clerkUser.firstName?.charAt(0) || 'U'}
                       </span>
                     </div>
                     <div className='absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center'>
@@ -82,7 +91,7 @@ export default async function HomePage() {
                   {/* User Details */}
                   <div className='flex-1'>
                     <h3 className='text-2xl font-bold text-white mb-3'>
-                      {user.firstName} {user.lastName}
+                      {clerkUser.firstName} {clerkUser.lastName}
                     </h3>
                     <p className='text-gray-300 mb-6 leading-relaxed'>
                       Ready to take control of your finances? Add new expenses and get AI-powered insights instantly.
@@ -102,7 +111,7 @@ export default async function HomePage() {
                             Joined
                           </span>
                           <span className='text-sm font-semibold text-white'>
-                            {new Date(user.createdAt).toLocaleDateString()}
+                            {dbUser ? new Date(dbUser.createdAt).toLocaleDateString() : 'N/A'}
                           </span>
                         </div>
                       </div>
@@ -119,8 +128,8 @@ export default async function HomePage() {
                             Last Active
                           </span>
                           <span className='text-sm font-semibold text-white'>
-                            {user.lastActiveAt
-                              ? new Date(user.lastActiveAt).toLocaleDateString()
+                            {dbUser?.lastActiveAt
+                              ? new Date(dbUser.lastActiveAt).toLocaleDateString()
                               : 'Today'}
                           </span>
                         </div>

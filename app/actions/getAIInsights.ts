@@ -3,6 +3,7 @@
 import { checkUser } from '@/lib/checkUser';
 import { db } from '@/lib/db';
 import { generateExpenseInsights, AIInsight, ExpenseRecord } from '@/lib/ai';
+import { updateLastActive } from './updateLastActive';
 
 export async function getAIInsights(): Promise<AIInsight[]> {
   try {
@@ -10,6 +11,9 @@ export async function getAIInsights(): Promise<AIInsight[]> {
     if (!user) {
       throw new Error('User not authenticated');
     }
+
+    // Update user's last active timestamp
+    await updateLastActive();
 
     // Get user's recent expenses (last 30 days)
     const thirtyDaysAgo = new Date();

@@ -170,7 +170,10 @@ const BarChart = ({ records }: { records: Record[] }) => {
               item.categories.length > 1
                 ? `Categories: ${item.categories.join(', ')}`
                 : `Category: ${item.categories[0]}`;
-            return [`Total: $${item.amount.toFixed(2)}`, categoriesText];
+            return [
+              `Total: ₹${item.amount.toFixed(2)}`,
+              categoriesText
+            ];
           },
         },
       },
@@ -201,7 +204,7 @@ const BarChart = ({ records }: { records: Record[] }) => {
       y: {
         title: {
           display: true,
-          text: 'Amount ($)',
+          text: 'Amount (₹)',
           font: {
             size: isMobile ? 12 : 16, // Smaller font on mobile
             weight: 'bold' as const,
@@ -214,7 +217,7 @@ const BarChart = ({ records }: { records: Record[] }) => {
           },
           color: '#9ca3af', // Gray y-axis labels
           callback: function (value: string | number) {
-            return '$' + value; // Add dollar sign to y-axis labels
+            return '₹' + value; // Add INR symbol to y-axis labels
           },
         },
         grid: {

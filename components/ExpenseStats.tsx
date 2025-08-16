@@ -49,7 +49,7 @@ const ExpenseStats = async () => {
               </span>
             </div>
             <div className='text-4xl font-bold text-white mb-2'>
-              ${averageExpense.toFixed(2)}
+              ₹{averageExpense.toFixed(2)}
             </div>
             <div className='flex items-center gap-2 text-sm text-emerald-400'>
               <div className='w-2 h-2 bg-emerald-400 rounded-full'></div>
@@ -70,7 +70,7 @@ const ExpenseStats = async () => {
                 </span>
               </div>
               <div className='text-2xl font-bold text-white'>
-                {bestExpense !== undefined ? `$${bestExpense}` : 'No data'}
+                {bestExpense !== undefined ? `₹${bestExpense}` : 'No data'}
               </div>
             </div>
 
@@ -86,7 +86,7 @@ const ExpenseStats = async () => {
               </div>
               <div className='text-2xl font-bold text-white'>
                 {worstExpense !== undefined
-                  ? `$${worstExpense}`
+                  ? `₹${worstExpense}`
                   : 'No data'}
               </div>
             </div>

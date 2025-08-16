@@ -2,6 +2,7 @@
 import { auth } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
+import { updateLastActive } from './updateLastActive';
 
 interface RecordData {
   text: string;
@@ -71,6 +72,9 @@ async function addExpenseRecord(formData: FormData): Promise<RecordResult> {
         userId,
       },
     });
+
+    // Update user's last active timestamp
+    await updateLastActive();
 
     const recordData: RecordData = {
       text: createdRecord.text,

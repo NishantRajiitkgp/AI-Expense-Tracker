@@ -225,26 +225,21 @@ const AddRecord = () => {
 
           {/* Amount */}
           <div className='space-y-3'>
-            <label
-              htmlFor='amount'
-              className='flex items-center gap-3 text-sm font-semibold text-white'
-            >
+            <label htmlFor='amount' className='flex items-center gap-2 text-sm font-semibold text-white mb-3'>
               <span className='w-2 h-2 bg-emerald-500 rounded-full'></span>
               Amount
               <span className='text-xs text-gray-300 ml-2 font-normal'>
-                Enter amount between $0 and $1,000
+                Enter amount in INR
               </span>
             </label>
             <div className='relative'>
               <span className='absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-medium text-sm'>
-                $
+                ₹
               </span>
               <input
                 type='number'
                 name='amount'
                 id='amount'
-                min='0'
-                max='1000'
                 step='0.01'
                 value={amount}
                 onChange={(e) => setAmount(parseFloat(e.target.value) || 0)}

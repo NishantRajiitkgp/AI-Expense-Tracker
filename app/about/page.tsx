@@ -76,7 +76,7 @@ const AboutPage = () => {
               <div className='absolute inset-0 bg-gradient-to-br from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-all duration-700 rounded-3xl'></div>
               <div className='relative z-10'>
                 <div className='text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-green-100 to-emerald-100 bg-clip-text text-transparent group-hover:from-green-200 group-hover:to-emerald-200 transition-all duration-700'>
-                  $2M+
+                  ₹2M+
                 </div>
                 <div className='text-gray-200 font-medium text-lg group-hover:text-white transition-colors duration-700'>
                   Money Tracked
