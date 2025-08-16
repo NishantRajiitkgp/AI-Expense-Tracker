@@ -1,5 +1,6 @@
 'use client';
 import { useRef, useState } from 'react';
+import { Sparkles, Calendar, ChevronDown, DollarSign, CheckCircle, AlertCircle } from 'lucide-react';
 import addExpenseRecord from '@/app/actions/addExpenseRecord';
 import { suggestCategory } from '@/app/actions/suggestCategory';
 
@@ -75,17 +76,17 @@ const AddRecord = () => {
           const formData = new FormData(formRef.current!);
           clientAction(formData);
         }}
-        className='space-y-6'
+        className='space-y-8'
       >
         {/* Expense Description and Date */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           {/* Expense Description */}
-          <div className='space-y-2'>
+          <div className='space-y-3'>
             <label
               htmlFor='text'
-              className='flex items-center gap-2 text-sm font-semibold text-white'
+              className='flex items-center gap-3 text-sm font-semibold text-white'
             >
-              <span className='w-1.5 h-1.5 bg-green-500 rounded-full'></span>
+              <span className='w-2 h-2 bg-emerald-500 rounded-full'></span>
               Expense Description
             </label>
             <div className='relative'>
@@ -95,7 +96,7 @@ const AddRecord = () => {
                 name='text'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className='w-full pl-3 pr-12 py-3 bg-gray-700/70 border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-green-500/30 focus:bg-gray-600/90 focus:border-green-400 text-white placeholder-gray-400 text-sm transition-all duration-200'
+                className='w-full pl-4 pr-14 py-4 bg-white/10 border border-white/20 rounded-2xl focus:ring-2 focus:ring-emerald-500/30 focus:bg-white/15 focus:border-emerald-400 text-white placeholder-gray-300 text-sm transition-all duration-200'
                 placeholder='Coffee, groceries, gas...'
                 required
               />
@@ -103,33 +104,31 @@ const AddRecord = () => {
                 type='button'
                 onClick={handleAISuggestCategory}
                 disabled={isCategorizingAI || !description.trim()}
-                className='absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-600 hover:bg-gray-500 disabled:bg-gray-700 text-white rounded-lg flex items-center justify-center transition-all duration-200'
+                className='absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-emerald-500/20 hover:bg-emerald-500/30 disabled:bg-gray-500/20 text-emerald-400 hover:text-emerald-300 disabled:text-gray-500 rounded-xl flex items-center justify-center transition-all duration-200'
                 title='AI Category Suggestion'
               >
                 {isCategorizingAI ? (
-                  <div className='w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin'></div>
+                  <div className='w-3 h-3 border-2 border-emerald-400/30 border-t-emerald-400 rounded-full animate-spin'></div>
                 ) : (
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
+                  <Sparkles className="w-4 h-4" />
                 )}
               </button>
             </div>
             {isCategorizingAI && (
-              <div className='flex items-center gap-2 text-xs text-green-400'>
-                <div className='w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse'></div>
+              <div className='flex items-center gap-2 text-xs text-emerald-400'>
+                <div className='w-2 h-2 bg-emerald-500 rounded-full animate-pulse'></div>
                 AI is analyzing your description...
               </div>
             )}
           </div>
 
           {/* Expense Date */}
-          <div className='space-y-2'>
+          <div className='space-y-3'>
             <label
               htmlFor='date'
-              className='flex items-center gap-2 text-sm font-semibold text-white'
+              className='flex items-center gap-3 text-sm font-semibold text-white'
             >
-              <span className='w-1.5 h-1.5 bg-green-500 rounded-full'></span>
+              <span className='w-2 h-2 bg-emerald-500 rounded-full'></span>
               Expense Date
             </label>
             <div className='relative'>
@@ -137,14 +136,12 @@ const AddRecord = () => {
                 type='date'
                 name='date'
                 id='date'
-                className='w-full px-3 py-3 bg-gray-700/70 border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-green-500/30 focus:bg-gray-600/90 focus:border-green-400 text-white text-sm transition-all duration-200'
+                className='w-full px-4 py-4 bg-white/10 border border-white/20 rounded-2xl focus:ring-2 focus:ring-emerald-500/30 focus:bg-white/15 focus:border-emerald-400 text-white text-sm transition-all duration-200'
                 required
                 onFocus={(e) => e.target.showPicker()}
               />
-              <div className='absolute right-3 top-1/2 -translate-y-1/2'>
-                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
+              <div className='absolute right-4 top-1/2 -translate-y-1/2'>
+                <Calendar className="w-4 h-4 text-gray-400" />
               </div>
             </div>
           </div>
@@ -153,14 +150,14 @@ const AddRecord = () => {
         {/* Category Selection and Amount */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           {/* Category Selection */}
-          <div className='space-y-2'>
+          <div className='space-y-3'>
             <label
               htmlFor='category'
-              className='flex items-center gap-2 text-sm font-semibold text-white'
+              className='flex items-center gap-3 text-sm font-semibold text-white'
             >
-              <span className='w-1.5 h-1.5 bg-green-500 rounded-full'></span>
+              <span className='w-2 h-2 bg-emerald-500 rounded-full'></span>
               Category
-              <span className='text-xs text-gray-400 ml-2 font-normal'>
+              <span className='text-xs text-gray-300 ml-2 font-normal'>
                 Use the ✨ button above for AI suggestions
               </span>
             </label>
@@ -170,78 +167,76 @@ const AddRecord = () => {
                 name='category'
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className='w-full px-3 py-3 bg-gray-700/70 border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-green-500/30 focus:bg-gray-600/90 focus:border-green-400 text-white cursor-pointer text-sm transition-all duration-200 appearance-none'
+                className='w-full px-4 py-4 bg-white/10 border border-white/20 rounded-2xl focus:ring-2 focus:ring-emerald-500/30 focus:bg-white/15 focus:border-emerald-400 text-white cursor-pointer text-sm transition-all duration-200 appearance-none'
                 required
               >
               <option
                 value=''
                 disabled
-                className='text-gray-500 bg-gray-700'
+                className='text-gray-400 bg-gray-800'
               >
                 Select category...
               </option>
-              <option value='Food' className='text-white bg-gray-700'>
+              <option value='Food' className='text-white bg-gray-800'>
                 Food & Dining
               </option>
               <option
                 value='Transportation'
-                className='text-white bg-gray-700'
+                className='text-white bg-gray-800'
               >
                 Transportation
               </option>
               <option
                 value='Shopping'
-                className='text-white bg-gray-700'
+                className='text-white bg-gray-800'
               >
                 Shopping
               </option>
               <option
                 value='Entertainment'
-                className='text-white bg-gray-700'
+                className='text-white bg-gray-800'
               >
                 Entertainment
               </option>
               <option
                 value='Bills'
-                className='text-white bg-gray-700'
+                className='text-white bg-gray-800'
               >
                 Bills & Utilities
               </option>
               <option
                 value='Healthcare'
-                className='text-white bg-gray-700'
+                className='text-white bg-gray-800'
               >
                 Healthcare
               </option>
               <option
                 value='Other'
-                className='text-white bg-gray-700'
+                className='text-white bg-gray-800'
               >
                 Other
               </option>
             </select>
-            <div className='absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none'>
-              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
+            <div className='absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none'>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
             </div>
           </div>
         </div>
 
           {/* Amount */}
-          <div className='space-y-2'>
+          <div className='space-y-3'>
             <label
               htmlFor='amount'
-              className='flex items-center gap-2 text-sm font-semibold text-white'
+              className='flex items-center gap-3 text-sm font-semibold text-white'
             >
-              <span className='w-1.5 h-1.5 bg-green-500 rounded-full'></span>
+              <span className='w-2 h-2 bg-emerald-500 rounded-full'></span>
               Amount
-              <span className='text-xs text-gray-400 ml-2 font-normal'>
+              <span className='text-xs text-gray-300 ml-2 font-normal'>
                 Enter amount between $0 and $1,000
               </span>
             </label>
             <div className='relative'>
-              <span className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-medium text-sm'>
+              <span className='absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 font-medium text-sm'>
                 $
               </span>
               <input
@@ -253,7 +248,7 @@ const AddRecord = () => {
                 step='0.01'
                 value={amount}
                 onChange={(e) => setAmount(parseFloat(e.target.value) || 0)}
-                className='w-full pl-6 pr-3 py-3 bg-gray-700/70 border border-gray-600/50 rounded-xl focus:ring-2 focus:ring-green-500/30 focus:bg-gray-600/90 focus:border-green-400 text-white placeholder-gray-400 text-sm font-semibold transition-all duration-200'
+                className='w-full pl-8 pr-4 py-4 bg-white/10 border border-white/20 rounded-2xl focus:ring-2 focus:ring-emerald-500/30 focus:bg-white/15 focus:border-emerald-400 text-white placeholder-gray-300 text-sm font-semibold transition-all duration-200'
                 placeholder='50'
                 required
               />
@@ -264,7 +259,7 @@ const AddRecord = () => {
         {/* Submit Button */}
         <button
           type='submit'
-          className='w-full bg-white text-black px-6 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-base'
+          className='w-full bg-gradient-to-r from-emerald-500 to-green-600 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:shadow-emerald-500/25 transition-all duration-200 text-base hover:from-emerald-600 hover:to-green-700 disabled:opacity-50 disabled:cursor-not-allowed'
           disabled={isLoading}
         >
           {isLoading ? 'Processing...' : 'Add Expense'}
@@ -274,28 +269,24 @@ const AddRecord = () => {
       {/* Alert Message */}
       {alertMessage && (
         <div
-          className={`mt-6 p-4 rounded-xl backdrop-blur-sm ${
+          className={`mt-8 p-5 rounded-2xl backdrop-blur-sm border ${
             alertType === 'success'
-              ? 'bg-green-900/20 text-green-200'
-              : 'bg-red-900/20 text-red-200'
+              ? 'bg-emerald-500/10 text-emerald-200 border-emerald-500/20'
+              : 'bg-red-500/10 text-red-200 border-red-500/20'
           }`}
         >
           <div className='flex items-center gap-3'>
             <div
-              className={`w-6 h-6 rounded-full flex items-center justify-center ${
+              className={`w-8 h-8 rounded-xl flex items-center justify-center ${
                 alertType === 'success'
-                  ? 'bg-green-800'
-                  : 'bg-red-800'
+                  ? 'bg-emerald-500/20 text-emerald-400'
+                  : 'bg-red-500/20 text-red-400'
               }`}
             >
               {alertType === 'success' ? (
-                <svg className="w-4 h-4 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+                <CheckCircle className="w-5 h-5" />
               ) : (
-                <svg className="w-4 h-4 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                </svg>
+                <AlertCircle className="w-5 h-5" />
               )}
             </div>
             <p className='font-medium text-sm'>{alertMessage}</p>
