@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Brain, RefreshCw, AlertTriangle, CheckCircle, Lightbulb, Info, ArrowRight, Bot } from 'lucide-react';
 import { getAIInsights } from '@/app/actions/getAIInsights';
 import { generateInsightAnswer } from '@/app/actions/generateInsightAnswer';
 
@@ -106,45 +107,60 @@ const AIInsights = () => {
   const getInsightIcon = (type: string) => {
     switch (type) {
       case 'warning':
-        return '⚠️';
+        return <AlertTriangle className="w-4 h-4" />;
       case 'success':
-        return '✅';
+        return <CheckCircle className="w-4 h-4" />;
       case 'tip':
-        return '💡';
+        return <Lightbulb className="w-4 h-4" />;
       case 'info':
-        return 'ℹ️';
+        return <Info className="w-4 h-4" />;
       default:
-        return '🤖';
+        return <Bot className="w-4 h-4" />;
     }
   };
 
   const getInsightColors = (type: string) => {
     switch (type) {
       case 'warning':
-        return 'border-l-yellow-500 bg-yellow-900/20';
+        return 'bg-gradient-to-r from-orange-500/10 to-yellow-500/10 border-orange-500/20';
       case 'success':
-        return 'border-l-green-500 bg-green-900/20';
+        return 'bg-gradient-to-r from-emerald-500/10 to-green-500/10 border-emerald-500/20';
       case 'tip':
-        return 'border-l-emerald-500 bg-emerald-900/20';
+        return 'bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border-blue-500/20';
       case 'info':
-        return 'border-l-emerald-500 bg-emerald-900/20';
+        return 'bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border-emerald-500/20';
       default:
-        return 'border-l-gray-500 bg-gray-800/50';
+        return 'bg-gradient-to-r from-gray-500/10 to-slate-500/10 border-gray-500/20';
+    }
+  };
+
+  const getIconColors = (type: string) => {
+    switch (type) {
+      case 'warning':
+        return 'bg-gradient-to-br from-orange-500 to-yellow-500';
+      case 'success':
+        return 'bg-gradient-to-br from-emerald-500 to-green-500';
+      case 'tip':
+        return 'bg-gradient-to-br from-blue-500 to-indigo-500';
+      case 'info':
+        return 'bg-gradient-to-br from-emerald-500 to-teal-500';
+      default:
+        return 'bg-gradient-to-br from-gray-500 to-slate-500';
     }
   };
 
   const getButtonColors = (type: string) => {
     switch (type) {
       case 'warning':
-        return 'text-yellow-300 hover:text-yellow-200';
+        return 'text-orange-300 hover:text-orange-200 hover:bg-orange-500/10';
       case 'success':
-        return 'text-green-300 hover:text-green-200';
+        return 'text-emerald-300 hover:text-emerald-200 hover:bg-emerald-500/10';
       case 'tip':
-        return 'text-emerald-300 hover:text-emerald-200';
+        return 'text-blue-300 hover:text-blue-200 hover:bg-blue-500/10';
       case 'info':
-        return 'text-emerald-300 hover:text-emerald-200';
+        return 'text-emerald-300 hover:text-emerald-200 hover:bg-emerald-500/10';
       default:
-        return 'text-gray-300 hover:text-gray-200';
+        return 'text-gray-300 hover:text-gray-200 hover:bg-gray-500/10';
     }
   };
 
@@ -166,76 +182,48 @@ const AIInsights = () => {
 
   if (isLoading) {
     return (
-      <div className='bg-gray-800/50 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-xl border border-gray-700/50 transition-all duration-300'>
-        <div className='flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6'>
-          <div className='w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg'>
-            <span className='text-white text-sm sm:text-lg'>🤖</span>
-          </div>
-          <div className='flex-1'>
-            <h3 className='text-lg sm:text-xl font-bold text-white'>
-              AI Insights
-            </h3>
-            <p className='text-xs text-gray-400 mt-0.5'>
-              Analyzing your spending patterns
-            </p>
-          </div>
-          <div className='flex items-center gap-1 sm:gap-2'>
-            <div className='w-5 h-5 sm:w-6 sm:h-6 border-2 border-orange-500/30 border-t-orange-500 rounded-full animate-spin'></div>
-            <span className='text-xs sm:text-sm text-orange-400 font-medium hidden sm:block'>
-              Analyzing...
-            </span>
-          </div>
-        </div>
-
-        <div className='space-y-3 sm:space-y-4'>
-          {[1, 2, 3].map((i) => (
+      <div className='w-full'>
+        <div className='space-y-6'>
+          {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
-              className='animate-pulse bg-gradient-to-r from-gray-700 to-gray-800 p-3 sm:p-4 rounded-xl border border-gray-600'
+              className='animate-pulse bg-gradient-to-r from-white/5 to-white/10 p-6 rounded-2xl border border-white/10'
             >
-              <div className='flex items-start gap-3 sm:gap-4'>
-                <div className='w-6 h-6 sm:w-8 sm:h-8 bg-gray-600 rounded-lg'></div>
-                <div className='flex-1 space-y-2'>
-                  <div className='h-3 bg-gray-600 rounded-lg w-3/4'></div>
-                  <div className='h-3 bg-gray-600 rounded-lg w-full'></div>
-                  <div className='h-3 bg-gray-600 rounded-lg w-2/3'></div>
+              <div className='flex items-start gap-4'>
+                <div className='w-10 h-10 bg-gray-500/20 rounded-xl'></div>
+                <div className='flex-1 space-y-3'>
+                  <div className='h-4 bg-gray-500/20 rounded-lg w-3/4'></div>
+                  <div className='h-3 bg-gray-500/20 rounded-lg w-full'></div>
+                  <div className='h-3 bg-gray-500/20 rounded-lg w-2/3'></div>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className='mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-700 text-center'>
-          <div className='flex items-center justify-center gap-2 text-sm text-gray-400'>
-            <div className='w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse'></div>
-            <span className='text-xs sm:text-sm'>
-              AI is analyzing your financial patterns...
-            </span>
-          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className='bg-gray-800/50 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-xl border border-gray-700/50 hover:shadow-2xl transition-all duration-300'>
-      <div className='flex items-center justify-between mb-4 sm:mb-6'>
-        <div className='flex items-center gap-2 sm:gap-3'>
-          <div className='w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg'>
-            <span className='text-white text-sm sm:text-lg'>🤖</span>
+    <div className='w-full'>
+      {/* Header Section */}
+      <div className='flex items-center justify-between mb-8'>
+        <div className='flex items-center gap-4'>
+          <div className='w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg'>
+            <Bot className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h3 className='text-lg sm:text-xl font-bold text-white'>
+            <h3 className='text-2xl font-bold text-white'>
               AI Insights
             </h3>
-            <p className='text-xs text-gray-400 mt-0.5'>
-              AI financial analysis
+            <p className='text-gray-300 text-sm mt-1'>
+              AI-powered financial analysis
             </p>
           </div>
         </div>
-        <div className='flex items-center gap-2 sm:gap-3'>
-          <div className='inline-flex items-center gap-2 bg-orange-900/30 text-orange-300 px-2 py-1 rounded-full text-xs font-medium'>
-            <span className='w-1.5 h-1.5 bg-orange-500 rounded-full'></span>
+        <div className='flex items-center gap-3'>
+          <div className='inline-flex items-center gap-2 bg-white/10 text-orange-300 px-3 py-2 rounded-xl text-sm font-medium border border-white/20'>
+            <span className='w-2 h-2 bg-orange-500 rounded-full'></span>
             <span className='hidden sm:inline'>{formatLastUpdated()}</span>
             <span className='sm:hidden'>
               {formatLastUpdated().includes('ago')
@@ -245,15 +233,16 @@ const AIInsights = () => {
           </div>
           <button
             onClick={loadInsights}
-            className='w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200'
+            className='w-10 h-10 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200'
             disabled={isLoading}
           >
-            <span className='text-sm'>🔄</span>
+            <RefreshCw className="w-5 h-5" />
           </button>
         </div>
       </div>
 
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4'>
+      {/* Insights Grid */}
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
         {insights.map((insight) => {
           const currentAnswer = aiAnswers.find(
             (a) => a.insightId === insight.id
@@ -262,111 +251,95 @@ const AIInsights = () => {
           return (
             <div
               key={insight.id}
-              className={`relative overflow-hidden rounded-xl p-3 sm:p-4 border-l-4 hover:shadow-lg transition-all duration-200 ${getInsightColors(
+              className={`relative overflow-hidden rounded-2xl p-6 border border-white/10 hover:shadow-xl transition-all duration-200 ${getInsightColors(
                 insight.type
               )}`}
             >
-              <div className='flex items-start justify-between'>
+              <div className='flex items-start gap-4 mb-4'>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${getIconColors(insight.type)}`}>
+                  {getInsightIcon(insight.type)}
+                </div>
                 <div className='flex-1'>
-                  <div className='flex items-center gap-2 sm:gap-3 mb-2'>
-                    <div
-                      className={`w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center ${
-                        insight.type === 'warning'
-                          ? 'bg-yellow-900/50'
-                          : insight.type === 'success'
-                          ? 'bg-green-900/50'
-                          : insight.type === 'tip'
-                          ? 'bg-emerald-900/50'
-                          : 'bg-emerald-900/50'
-                      }`}
-                    >
-                      <span className='text-sm sm:text-lg'>
-                        {getInsightIcon(insight.type)}
-                      </span>
-                    </div>
-                    <div className='flex-1'>
-                      <h4 className='font-bold text-white text-sm mb-0.5'>
-                        {insight.title}
-                      </h4>
-                      {insight.confidence && insight.confidence < 0.8 && (
-                        <span className='inline-block px-2 py-0.5 bg-yellow-900/50 text-yellow-300 rounded-full text-xs font-medium'>
-                          Preliminary
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <p className='text-gray-300 text-xs leading-relaxed mb-3'>
-                    {insight.message}
-                  </p>
-                  {insight.action && (
-                    <div className='text-left'>
-                      <span
-                        onClick={() => handleActionClick(insight)}
-                        className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg font-medium text-xs cursor-pointer transition-all duration-200 ${getButtonColors(
-                          insight.type
-                        )} hover:bg-gray-700/50 ${
-                          currentAnswer ? 'bg-gray-700/50' : ''
-                        }`}
-                      >
-                        <span>{insight.action}</span>
-                        {currentAnswer?.isLoading ? (
-                          <div className='w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin'></div>
-                        ) : (
-                          <span className='text-xs'>
-                            {currentAnswer ? '↑' : '→'}
-                          </span>
-                        )}
-                      </span>
-                    </div>
-                  )}
-
-                  {/* AI Answer Display */}
-                  {currentAnswer && (
-                    <div className='mt-3 p-3 bg-gray-700/70 backdrop-blur-sm rounded-lg border border-gray-600'>
-                      <div className='flex items-start gap-2'>
-                        <div className='w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0'>
-                          <span className='text-white text-xs'>🤖</span>
-                        </div>
-                        <div className='flex-1'>
-                          <h5 className='font-semibold text-white text-xs mb-1'>
-                            AI Answer:
-                          </h5>
-                          {currentAnswer.isLoading ? (
-                            <div className='space-y-1'>
-                              <div className='animate-pulse bg-gray-600 h-2 rounded-lg w-full'></div>
-                              <div className='animate-pulse bg-gray-600 h-2 rounded-lg w-3/4'></div>
-                              <div className='animate-pulse bg-gray-600 h-2 rounded-lg w-1/2'></div>
-                            </div>
-                          ) : (
-                            <p className='text-gray-300 text-xs leading-relaxed'>
-                              {currentAnswer.answer}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
+                  <h4 className='font-bold text-white text-lg mb-2'>
+                    {insight.title}
+                  </h4>
+                  {insight.confidence && insight.confidence < 0.8 && (
+                    <span className='inline-block px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs font-medium border border-yellow-500/30'>
+                      Preliminary
+                    </span>
                   )}
                 </div>
               </div>
+              
+              <p className='text-gray-300 text-sm leading-relaxed mb-4'>
+                {insight.message}
+              </p>
+              
+              {insight.action && (
+                <div className='flex items-center justify-between'>
+                  <span
+                    onClick={() => handleActionClick(insight)}
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl font-medium text-sm cursor-pointer transition-all duration-200 ${getButtonColors(
+                      insight.type
+                    )}`}
+                  >
+                    <span>{insight.action}</span>
+                    {currentAnswer?.isLoading ? (
+                      <div className='w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin'></div>
+                    ) : (
+                      <ArrowRight className={`w-4 h-4 transition-transform ${currentAnswer ? 'rotate-90' : ''}`} />
+                    )}
+                  </span>
+                </div>
+              )}
+
+              {/* AI Answer Display */}
+              {currentAnswer && (
+                <div className='mt-4 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10'>
+                  <div className='flex items-start gap-3'>
+                    <div className='w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0'>
+                      <Bot className="w-4 h-4 text-white" />
+                    </div>
+                    <div className='flex-1'>
+                      <h5 className='font-semibold text-white text-sm mb-2'>
+                        AI Answer:
+                      </h5>
+                      {currentAnswer.isLoading ? (
+                        <div className='space-y-2'>
+                          <div className='animate-pulse bg-white/10 h-3 rounded-lg w-full'></div>
+                          <div className='animate-pulse bg-white/10 h-3 rounded-lg w-3/4'></div>
+                          <div className='animate-pulse bg-white/10 h-3 rounded-lg w-1/2'></div>
+                        </div>
+                      ) : (
+                        <p className='text-gray-300 text-sm leading-relaxed'>
+                          {currentAnswer.answer}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}
       </div>
 
-      <div className='mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-700'>
-        <div className='flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0'>
-          <div className='flex items-center gap-2 text-sm text-gray-400'>
-            <div className='w-5 h-5 sm:w-6 sm:h-6 bg-orange-900/30 rounded-lg flex items-center justify-center'>
-              <span className='text-sm'>🧠</span>
+      {/* Footer */}
+      <div className='mt-8 pt-6 border-t border-white/10'>
+        <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
+          <div className='flex items-center gap-3 text-sm text-gray-300'>
+            <div className='w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center'>
+              <Brain className="w-4 h-4 text-white" />
             </div>
-            <span className='font-medium text-xs'>Powered by AI analysis</span>
+            <span className='font-medium'>Powered by AI analysis</span>
           </div>
           <button
             onClick={loadInsights}
-            className='px-3 py-1.5 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white rounded-lg font-medium text-xs shadow-lg hover:shadow-xl transition-all duration-200'
+            className='px-6 py-3 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white rounded-xl font-medium text-sm shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2'
           >
             <span className='sm:hidden'>Refresh</span>
-            <span className='hidden sm:inline'>Refresh Insights →</span>
+            <span className='hidden sm:inline'>Refresh Insights</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </div>
