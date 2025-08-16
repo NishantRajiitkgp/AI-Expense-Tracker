@@ -37,7 +37,7 @@ export default async function HomePage() {
             </span>
           </h1>
           <p className='text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0'>
-            Here's a quick overview of your recent expense activity. Track your spending, analyze patterns, and manage your budget efficiently with AI-powered insights.
+            Here&apos;s a quick overview of your recent expense activity. Track your spending, analyze patterns, and manage your budget efficiently with AI-powered insights.
           </p>
           <div className='mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2 sm:px-0'>
             <div className='inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium'>

@@ -3,7 +3,8 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-
+import Image from 'next/image';
+  
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,6 +42,7 @@ export default function Navbar() {
               className='flex items-center gap-2 flex-shrink-0 group transition-all duration-300 hover:scale-105'
               onClick={closeMobileMenu}
             >
+              <Image src="/costpilot.png" alt="CostPilot" width={32} height={32} />
               <span className='text-xl font-bold text-white'>
                 CostPilot
               </span>

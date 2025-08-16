@@ -18,7 +18,7 @@ const ContactPage = () => {
           </h1>
           <p className='text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0'>
             Have questions about AI-powered expense tracking or need help?
-            We're here to assist you with intelligent financial management.
+            We&apos;re here to assist you with intelligent financial management.
           </p>
           <div className='mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2 sm:px-0'>
             <a
@@ -155,7 +155,7 @@ const ContactPage = () => {
               Support Information
             </div>
             <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white px-2 sm:px-0'>
-              We're Here to{' '}
+              We&apos;re Here to{' '}
               <span className='text-white'>
                 Help
               </span>
@@ -259,7 +259,7 @@ const ContactPage = () => {
           </div>
 
           <h2 className='text-4xl md:text-6xl font-bold mb-6 leading-tight text-white'>
-            Let's Get Your{' '}
+            Let&apos;s Get Your{' '}
             <span className='text-white'>
               Questions Answered
             </span>

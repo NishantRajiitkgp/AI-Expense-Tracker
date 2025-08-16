@@ -235,9 +235,9 @@ const Guest = () => {
                   </div>
                 </div>
                 <p className='text-sm sm:text-base leading-relaxed mb-4 text-gray-300 group-hover:text-gray-100 transition-colors duration-700'>
-                  "ExpenseTracker AI has completely transformed my
+                  &ldquo;ExpenseTracker AI has completely transformed my
                   budgeting. The AI insights are incredibly helpful and I now
-                  have full control over my finances!"
+                  have full control over my finances!&rdquo;
                 </p>
                 <div className='flex text-yellow-400 text-xs sm:text-sm'>
                   ⭐⭐⭐⭐⭐
@@ -266,9 +266,9 @@ const Guest = () => {
                   </div>
                 </div>
                 <p className='text-sm sm:text-base leading-relaxed mb-4 text-gray-300 group-hover:text-gray-100 transition-colors duration-700'>
-                  "The AI-powered insights from ExpenseTracker have helped
+                  &ldquo;The AI-powered insights from ExpenseTracker have helped
                   me identify and reduce unnecessary spending. The smart
-                  categorization is amazing!"
+                  categorization is amazing!&rdquo;
                 </p>
                 <div className='flex text-yellow-400 text-xs sm:text-sm'>
                   ⭐⭐⭐⭐⭐
@@ -297,9 +297,9 @@ const Guest = () => {
                   </div>
                 </div>
                 <p className='text-sm sm:text-base leading-relaxed mb-4 text-gray-300 group-hover:text-gray-100 transition-colors duration-700'>
-                  "ExpenseTracker AI is so intelligent and easy to use.
+                  &ldquo;ExpenseTracker AI is so intelligent and easy to use.
                   The AI recommendations are spot-on and have genuinely improved
-                  my financial habits!"
+                  my financial habits!&rdquo;
                 </p>
                 <div className='flex text-yellow-400 text-xs sm:text-sm'>
                   ⭐⭐⭐⭐⭐
